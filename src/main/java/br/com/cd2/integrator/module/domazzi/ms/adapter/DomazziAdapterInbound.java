@@ -1,4 +1,6 @@
 package br.com.cd2.integrator.module.domazzi.ms.adapter;
+import io.swagger.annotations.ApiOperation;
+import io.swagger.annotations.ApiResponses;
 
 import java.util.List;
 import javax.ws.rs.Produces;
@@ -36,7 +38,16 @@ public class DomazziAdapterInbound {
 	
 	@Autowired
 	DomazziDAO dao;
-		
+	
+	@ApiOperation(value = "Efetua o cadastro dos produtos na base cliente final.")
+	@ApiResponses(value = {
+				@io.swagger.annotations.ApiResponse(code = 200, message = "Possíveis retornos: produtos cadastrados/atualizados com sucesso."),
+				@io.swagger.annotations.ApiResponse(code = 403, message = "Você não tem permissão para acessar este recurso"),
+				@io.swagger.annotations.ApiResponse(code = 500, message = "Erro interno. Por favor, contate o nosso suporte."),
+				@io.swagger.annotations.ApiResponse(code = 422, message = "Possíveis retornos: / Erro nos campos enviados. Verifique os valores e nomes dos campos, assim como a estrutura da query."),
+
+		})
+
 	@PostMapping(value = "/processed_products", produces = "application/json", consumes = "application/json")
 	@ResponseBody
 	@CrossOrigin
@@ -75,6 +86,54 @@ public class DomazziAdapterInbound {
 		}
 		
 		}
+	
+	@ApiOperation(value = "Efetua o cadastro/atualização dos produtos na base cliente final que foram criados ou atualizados no dia atual.")
+	@ApiResponses(value = {
+				@io.swagger.annotations.ApiResponse(code = 200, message = "Possíveis retornos: produtos cadastrados/atualizados com sucesso."),
+				@io.swagger.annotations.ApiResponse(code = 403, message = "Você não tem permissão para acessar este recurso"),
+				@io.swagger.annotations.ApiResponse(code = 500, message = "Erro interno. Por favor, contate o nosso suporte."),
+				@io.swagger.annotations.ApiResponse(code = 422, message = "Possíveis retornos: / Erro nos campos enviados. Verifique os valores e nomes dos campos, assim como a estrutura da query."),
+
+		})
+	@PostMapping(value = "/dailly_products", produces = "application/json", consumes = "application/json")
+	@ResponseBody
+	@CrossOrigin
+	@Produces(MediaType.APPLICATION_JSON)
+	public ResponseEntity<ApiResponse> daillyProducts(@RequestBody @Validated Sql sql) {
+		System.out.println(sql);
+		Boolean domazzi = null;
+		try {
+			Sql processamentoNovo = sql;
+			if(processamentoNovo==null) {
+				return ResponseEntityUtil.unprocessableResponseEntity
+						(message.get(MessagesProperties.ENTITY_NOT_FOUND), sql);
+			}
+			else {
+				if(processamentoNovo.getSql().equalsIgnoreCase("")) {
+					return ResponseEntityUtil.notFoundResponseEntity
+							(message.get(MessagesProperties.API_UNKNOWN_FILDS), sql);
+				}else {
+					domazzi = dao.saveProducts(processamentoNovo.getSql());
+					if(domazzi!=false) {
+					
+						return ResponseEntityUtil.okResponseEntity(message.get
+							(MessagesProperties.CLI_SUCESS));
+					}else {
+						return ResponseEntityUtil.unprocessableResponseEntity(message.get
+								(MessagesProperties.API_UNKNOWN_FILDS),processamentoNovo);
+						
+					}
+				}
+				
+			}
+		} catch (Exception e) {
+			return ResponseEntityUtil.unprocessableResponseEntity
+					(message.get(MessagesProperties.ENTITY_NOT_FOUND), sql);
+	
+		}
+		
+		}
+
 	
 	@PatchMapping(value = "/update_products", produces = "application/json", consumes = "application/json")
 	@ResponseBody
