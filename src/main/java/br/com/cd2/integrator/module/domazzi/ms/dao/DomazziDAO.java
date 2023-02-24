@@ -38,8 +38,8 @@ public class DomazziDAO {
 		try {
 
 			connection = DriverManager.getConnection(
-					"jdbc:postgresql://ec2-54-173-77-184.compute-1.amazonaws.com:5432/dab7dm6f9nlecn", "zydcmkrqlequyr",
-					"7be726068f9523dc3a22d0eb11c9b35f283a101baa7e7d726750eb5e4cf5f896");
+					"jdbc:postgresql://179.188.16.145/domazzi", "domazzi",
+					"FcZv4P8#6,Ijz:");
 			 
 			
 			
