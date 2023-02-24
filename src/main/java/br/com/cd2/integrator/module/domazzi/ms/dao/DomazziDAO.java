@@ -97,6 +97,17 @@ public class DomazziDAO {
 		
 	}
 	
+	public List<Domazzi> findByEanAndPartner(String ean,String partner) {
+		List<Domazzi> novoProduto = null;
+		try {
+			return novoProduto = repository.findByEanAndPartner(ean,partner);
+		} catch (Exception e) {
+			e.printStackTrace();
+			return novoProduto;
+		}
+		
+	}
+	
 	public Boolean delete(Long id) {
 		try {
 			repository.deleteById(id);
