@@ -13,13 +13,15 @@ import br.com.cd2.integrator.module.domazzi.ms.model.Domazzi;
 public interface DomazziRepositoy extends 
 CrudRepository<Domazzi, Long>,JpaRepository<Domazzi, Long>{
 	
-	@Query(value = "SELECT * FROM PRODUCTS WHERE ID=?1", nativeQuery = true)
+	@Query(value = "SELECT * FROM PRODUCTS WHERE EAN=?1", nativeQuery = true)
 	Domazzi findId(Long id);
 	
-	@Query(value = "?1", nativeQuery = true)
-	Boolean insertProductProcessed(String sql);
 
-	@Query(value = "SELECT * FROM PRODUCTS WHERE DESCRICAO like ?1%", nativeQuery = true)
+
+	@Query(value = "SELECT * FROM PRODUCTS WHERE PARCEIRO like ?1", nativeQuery = true)
 	List<Domazzi> findByName(String name);
+	
+	@Query(value = "SELECT * FROM PRODUCTS WHERE PARCEIRO like ?2 AND CODIGO_ACESSO_PRINCIPAL like?1", nativeQuery = true)
+	List<Domazzi> findByEanAndPartner(String ean,String partner);
 
 }
