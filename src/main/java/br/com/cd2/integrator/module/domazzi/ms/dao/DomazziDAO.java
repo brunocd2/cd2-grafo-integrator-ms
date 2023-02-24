@@ -97,7 +97,7 @@ public class DomazziDAO {
 		
 	}
 	
-	public List<Domazzi> findByEanAndPartner(String ean,String partner) {
+	public List<Domazzi> findByEanAndPartner(Long ean,String partner) {
 		List<Domazzi> novoProduto = null;
 		try {
 			return novoProduto = repository.findByEanAndPartner(ean,partner);
