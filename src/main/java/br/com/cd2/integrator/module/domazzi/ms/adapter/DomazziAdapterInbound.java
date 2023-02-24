@@ -274,7 +274,7 @@ public class DomazziAdapterInbound {
 	@ResponseBody
 	@CrossOrigin
 	@Produces(MediaType.APPLICATION_JSON)
-	public ResponseEntity<ApiResponse> findByEanAndPartner(@RequestParam("partner") String partner, @RequestParam("ean") String ean) {
+	public ResponseEntity<ApiResponse> findByEanAndPartner(@RequestParam("partner") String partner, @RequestParam("ean") Long ean) {
 		List<Domazzi> listProducts = null;
 		try {
 			
