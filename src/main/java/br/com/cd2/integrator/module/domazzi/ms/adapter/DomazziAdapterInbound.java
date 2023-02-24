@@ -245,15 +245,40 @@ public class DomazziAdapterInbound {
 		}		
 		}
 
-	@GetMapping(value = "/find_products_by_name", produces = "application/json")
+	@GetMapping(value = "/find_products_by_partner", produces = "application/json")
 	@ResponseBody
 	@CrossOrigin
 	@Produces(MediaType.APPLICATION_JSON)
-	public ResponseEntity<ApiResponse> findByName(@RequestParam("nome") String nome) {
+	public ResponseEntity<ApiResponse> findByName(@RequestParam("partner") String partner) {
 		List<Domazzi> listProducts = null;
 		try {
 			
-			listProducts = dao.findByName(nome);
+			listProducts = dao.findByName(partner);
+				if(listProducts == null) {
+					return ResponseEntityUtil.notFoundResponseEntity
+							(message.get(MessagesProperties.CLI_NOT_FOUND), listProducts);
+				}else {
+					
+						return ResponseEntityUtil.okResponseEntity(message.get
+							(MessagesProperties.CLI_FINDED),listProducts);		
+				}
+		
+		} catch (Exception e) {
+			return ResponseEntityUtil.unprocessableResponseEntity
+					(message.get(MessagesProperties.ENTITY_NOT_FOUND), listProducts);
+
+		}		
+		}
+	
+	@GetMapping(value = "/find_products_by_partner_and_ean", produces = "application/json")
+	@ResponseBody
+	@CrossOrigin
+	@Produces(MediaType.APPLICATION_JSON)
+	public ResponseEntity<ApiResponse> findByEanAndPartner(@RequestParam("partner") String partner, @RequestParam("ean") String ean) {
+		List<Domazzi> listProducts = null;
+		try {
+			
+			listProducts = dao.findByEanAndPartner(ean,partner);
 				if(listProducts == null) {
 					return ResponseEntityUtil.notFoundResponseEntity
 							(message.get(MessagesProperties.CLI_NOT_FOUND), listProducts);
