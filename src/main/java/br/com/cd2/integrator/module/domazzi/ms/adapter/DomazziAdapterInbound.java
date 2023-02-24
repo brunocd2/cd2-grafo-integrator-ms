@@ -179,22 +179,22 @@ public class DomazziAdapterInbound {
 	@CrossOrigin
 	@Produces(MediaType.APPLICATION_JSON)
 	public ResponseEntity<ApiResponse> findAll() {
-		List<Domazzi> novoUsuario = null;
+		List<Domazzi> listProducts = null;
 		try {
 			
-			novoUsuario = dao.findAll();
-				if(novoUsuario.isEmpty()) {
+			listProducts = dao.findAll();
+				if(listProducts.isEmpty()) {
 					return ResponseEntityUtil.notFoundResponseEntity
-							(message.get(MessagesProperties.CLI_NOT_FOUND), novoUsuario);
+							(message.get(MessagesProperties.CLI_NOT_FOUND), listProducts);
 				}else {
 					
 						return ResponseEntityUtil.okResponseEntity(message.get
-							(MessagesProperties.CLI_FINDED),novoUsuario);		
+							(MessagesProperties.CLI_FINDED),listProducts);		
 				}
 		
 		} catch (Exception e) {
 			return ResponseEntityUtil.unprocessableResponseEntity
-					(message.get(MessagesProperties.ENTITY_NOT_FOUND), novoUsuario);
+					(message.get(MessagesProperties.ENTITY_NOT_FOUND), listProducts);
 
 		}		
 		}
@@ -204,22 +204,22 @@ public class DomazziAdapterInbound {
 	@CrossOrigin
 	@Produces(MediaType.APPLICATION_JSON)
 	public ResponseEntity<ApiResponse> findById(@RequestParam("id") Long id) {
-		Domazzi novoUsuario = null;
+		Domazzi listProducts = null;
 		try {
 			
-			novoUsuario = dao.findById(id);
-				if(novoUsuario == null) {
+			listProducts = dao.findById(id);
+				if(listProducts == null) {
 					return ResponseEntityUtil.notFoundResponseEntity
-							(message.get(MessagesProperties.CLI_NOT_FOUND), novoUsuario);
+							(message.get(MessagesProperties.CLI_NOT_FOUND), listProducts);
 				}else {
 					
 						return ResponseEntityUtil.okResponseEntity(message.get
-							(MessagesProperties.CLI_FINDED),novoUsuario);		
+							(MessagesProperties.CLI_FINDED),listProducts);		
 				}
 		
 		} catch (Exception e) {
 			return ResponseEntityUtil.unprocessableResponseEntity
-					(message.get(MessagesProperties.ENTITY_NOT_FOUND), novoUsuario);
+					(message.get(MessagesProperties.ENTITY_NOT_FOUND), listProducts);
 
 		}		
 		}
@@ -250,22 +250,22 @@ public class DomazziAdapterInbound {
 	@CrossOrigin
 	@Produces(MediaType.APPLICATION_JSON)
 	public ResponseEntity<ApiResponse> findByName(@RequestParam("nome") String nome) {
-		List<Domazzi> novoUsuario = null;
+		List<Domazzi> listProducts = null;
 		try {
 			
-			novoUsuario = dao.findByName(nome);
-				if(novoUsuario == null) {
+			listProducts = dao.findByName(nome);
+				if(listProducts == null) {
 					return ResponseEntityUtil.notFoundResponseEntity
-							(message.get(MessagesProperties.CLI_NOT_FOUND), novoUsuario);
+							(message.get(MessagesProperties.CLI_NOT_FOUND), listProducts);
 				}else {
 					
 						return ResponseEntityUtil.okResponseEntity(message.get
-							(MessagesProperties.CLI_FINDED),novoUsuario);		
+							(MessagesProperties.CLI_FINDED),listProducts);		
 				}
 		
 		} catch (Exception e) {
 			return ResponseEntityUtil.unprocessableResponseEntity
-					(message.get(MessagesProperties.ENTITY_NOT_FOUND), novoUsuario);
+					(message.get(MessagesProperties.ENTITY_NOT_FOUND), listProducts);
 
 		}		
 		}
