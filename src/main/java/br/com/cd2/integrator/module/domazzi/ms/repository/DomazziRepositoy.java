@@ -23,5 +23,8 @@ CrudRepository<Domazzi, Long>,JpaRepository<Domazzi, Long>{
 	
 	@Query(value = "SELECT * FROM PRODUCTS WHERE PARCEIRO = ?2 AND CODIGO_ACESSO_PRINCIPAL =?1", nativeQuery = true)
 	List<Domazzi> findByEanAndPartner(Long ean,String partner);
+	
+	@Query(value = "SELECT * FROM PRODUCTS WHERE  CATEGORIA like ?1%", nativeQuery = true)
+	List<Domazzi> findByCategoria(String categoria);
 
 }
