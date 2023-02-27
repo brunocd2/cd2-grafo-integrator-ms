@@ -25,6 +25,7 @@ import br.com.cd2.integrator.core.ms.i18n.MessagesProperties;
 import br.com.cd2.integrator.core.ms.rest.ApiResponse;
 import br.com.cd2.integrator.core.ms.rest.ResponseEntityUtil;
 import br.com.cd2.integrator.module.domazzi.ms.dao.DomazziDAO;
+import br.com.cd2.integrator.module.domazzi.ms.dto.DomazziDTO;
 import br.com.cd2.integrator.module.domazzi.ms.model.Domazzi;
 import br.com.cd2.integrator.module.domazzi.ms.model.Sql;
 
@@ -179,7 +180,7 @@ public class DomazziAdapterInbound {
 	@CrossOrigin
 	@Produces(MediaType.APPLICATION_JSON)
 	public ResponseEntity<ApiResponse> findAll() {
-		List<Domazzi> listProducts = null;
+		List<DomazziDTO> listProducts = null;
 		try {
 			
 			listProducts = dao.findAll();
@@ -204,7 +205,7 @@ public class DomazziAdapterInbound {
 	@CrossOrigin
 	@Produces(MediaType.APPLICATION_JSON)
 	public ResponseEntity<ApiResponse> findById(@RequestParam("id") Long id) {
-		Domazzi listProducts = null;
+		DomazziDTO listProducts = null;
 		try {
 			
 			listProducts = dao.findById(id);
@@ -250,10 +251,35 @@ public class DomazziAdapterInbound {
 	@CrossOrigin
 	@Produces(MediaType.APPLICATION_JSON)
 	public ResponseEntity<ApiResponse> findByName(@RequestParam("partner") String partner) {
-		List<Domazzi> listProducts = null;
+		List<DomazziDTO> listProducts = null;
 		try {
 			
 			listProducts = dao.findByName(partner);
+				if(listProducts == null) {
+					return ResponseEntityUtil.notFoundResponseEntity
+							(message.get(MessagesProperties.CLI_NOT_FOUND), listProducts);
+				}else {
+					
+						return ResponseEntityUtil.okResponseEntity(message.get
+							(MessagesProperties.CLI_FINDED),listProducts);		
+				}
+		
+		} catch (Exception e) {
+			return ResponseEntityUtil.unprocessableResponseEntity
+					(message.get(MessagesProperties.ENTITY_NOT_FOUND), listProducts);
+
+		}		
+		}
+	
+	@GetMapping(value = "/find_products_by_category", produces = "application/json")
+	@ResponseBody
+	@CrossOrigin
+	@Produces(MediaType.APPLICATION_JSON)
+	public ResponseEntity<ApiResponse> findByCategoria(@RequestParam("categoria") String categoria) {
+		List<DomazziDTO> listProducts = null;
+		try {
+			
+			listProducts = dao.findByCategoria(categoria);
 				if(listProducts == null) {
 					return ResponseEntityUtil.notFoundResponseEntity
 							(message.get(MessagesProperties.CLI_NOT_FOUND), listProducts);
@@ -275,7 +301,7 @@ public class DomazziAdapterInbound {
 	@CrossOrigin
 	@Produces(MediaType.APPLICATION_JSON)
 	public ResponseEntity<ApiResponse> findByEanAndPartner(@RequestParam("partner") String partner, @RequestParam("ean") Long ean) {
-		List<Domazzi> listProducts = null;
+		List<DomazziDTO> listProducts = null;
 		try {
 			
 			listProducts = dao.findByEanAndPartner(ean,partner);
