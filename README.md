@@ -2,6 +2,18 @@
 
 [![Build Status](https://travis-ci.org/joemccann/dillinger.svg?branch=master)](https://travis-ci.org/joemccann/dillinger)
 
+##### Precificação
+Verifique a precificação de cada item em comparação com os demais concorrentes.
+
+##### Agilidade
+Informações em D-0, permitindo ações que geram impacto dentro do mês
+
+##### Granularidade
+Dados reais de venda do caixa no nível de detalhe do produto, criando inteligência acionável loja a loja.
+
+##### Sortimento
+Identifique mix de produtos para cada loja.
+
 Sistema responsável integração e insersão dos produtos de clientes internos e externos gerados no projeto CD2 Grafo Integrator.
 
   - Liberação de serviços para gestão e controle de Produtos.
