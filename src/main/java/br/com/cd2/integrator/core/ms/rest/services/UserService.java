@@ -2,6 +2,7 @@ package br.com.cd2.integrator.core.ms.rest.services;
 
 import java.util.Random;
 
+import org.apache.commons.mail.EmailException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -27,6 +28,13 @@ public class UserService {
 
 	MD5 crypt =  new MD5();
 	
+	public User insert(User obj) throws EmailException {
+		obj = repository.save(obj);
+		emailService.sendNewUserEmail(obj);
+		return obj;
+	}
+
+	
 	public void sendNewPassword(String email) throws ObjectNotFoundException {
 		
 		User cliente = dao.findByEmail(email);
@@ -47,7 +55,7 @@ public class UserService {
 
 	}
 
-	private String newPassword() {
+	public String newPassword() {
 
 		char[] vet = new char[10];
 

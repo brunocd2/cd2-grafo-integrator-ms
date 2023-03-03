@@ -15,5 +15,9 @@ public enum MessagesProperties {
       PASSWORD_REQUIRED,
       CLI_FINDED,
       CLI_DELETED,
-	
+      USU_SUCESS,
+      CAD_USU_SUCESS,
+      CAD_USU_FAIL,
+      EMAIL_FOUND,
+      USU_NOT_FOUND
 }

@@ -11,10 +11,10 @@ import br.com.cd2.integrator.core.model.User;
 public interface UserRepository extends CrudRepository<User, Long>,JpaRepository<User, Long>{
 	
 	
-	@Query(value = "SELECT ID,NAME, EMAIL, REMEMBER_TOKEN, PASS_MD5 FROM USERS WHERE EMAIL = ?1 AND PASS_MD5 =?2", nativeQuery = true)
+	@Query(value = "SELECT * FROM USERS WHERE EMAIL = ?1 AND PASS_MD5 =?2", nativeQuery = true)
 	User findByUserAndPass(String user,String pass);
 	
-	@Query(value = "SELECT ID,NAME, EMAIL, REMEMBER_TOKEN, PASS_MD5 FROM USERS WHERE EMAIL = ?1 ", nativeQuery = true)
+	@Query(value = "SELECT * FROM USERS WHERE EMAIL = ?1 ", nativeQuery = true)
 	User findByEmail(String email);
 
 	
