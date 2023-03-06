@@ -86,7 +86,7 @@ public class UserAdapterInbound {
 						UUID uuid = UUID.randomUUID();
 						String myRandom = uuid.toString();
 						String token = myRandom.toString();
-						domazzi.setRemember_token("123456");
+						domazzi.setRemember_token(token);
 						
 						return ResponseEntityUtil.okResponseEntity(message.get(MessagesProperties.USU_SUCESS), domazzi);
 					} else {
