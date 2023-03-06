@@ -91,7 +91,7 @@ public class UserAdapterInbound {
 						return ResponseEntityUtil.okResponseEntity(message.get(MessagesProperties.USU_SUCESS), domazzi);
 					} else {
 						return ResponseEntityUtil
-								.unprocessableResponseEntity(message.get(MessagesProperties.USU_NOT_FOUND), user);
+								.unprocessableResponseEntity(message.get(MessagesProperties.USU_NOT_FOUND), domazzi);
 
 					}
 				}
