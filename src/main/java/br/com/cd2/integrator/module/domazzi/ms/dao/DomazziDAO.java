@@ -69,9 +69,11 @@ public class DomazziDAO {
 	public List<DomazziDTO> findAll() {
 		List<DomazziDTO> novoProduto = new ArrayList<>();
 		List<Domazzi> domazzi = repository.findAll();
-		DomazziDTO dto = new DomazziDTO();
 		try {
+
 		for (int i = 0; i < domazzi.size(); i++) {
+			DomazziDTO dto = new DomazziDTO();
+
 			dto.setCategoria(domazzi.get(i).getCategoria());
 			dto.setCodigo_acesso_principal(domazzi.get(i).getCodigo_acesso_principal());
 			dto.setCreated_at(domazzi.get(i).getCreated_at());
