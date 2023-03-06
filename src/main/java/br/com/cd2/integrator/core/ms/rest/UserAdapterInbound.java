@@ -78,15 +78,15 @@ public class UserAdapterInbound {
 				} else {
 					domazzi = dao.findByUserAndPass(user.getEmail(), MD5.getMd5(user.getPassword()));
 					if (domazzi != null) {
-						java.util.Random r = new java.util.Random();
-						byte[] bytes = new byte[20];
+						//java.util.Random r = new java.util.Random();
+						//byte[] bytes = new byte[20];
 
-						r.nextBytes(bytes);
+						//r.nextBytes(bytes);
 
-						UUID uuid = UUID.randomUUID();
-						String myRandom = uuid.toString();
-						String token = myRandom.toString();
-						domazzi.setRemember_token(token.toString());
+						//UUID uuid = UUID.randomUUID();
+						//String myRandom = uuid.toString();
+						//String token = myRandom.toString();
+						domazzi.setRemember_token("123456");
 						
 						return ResponseEntityUtil.okResponseEntity(message.get(MessagesProperties.USU_SUCESS), domazzi);
 					} else {
