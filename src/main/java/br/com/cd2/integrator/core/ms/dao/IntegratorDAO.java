@@ -54,6 +54,7 @@ public class IntegratorDAO {
 			
 			
 			  while (r.next()){
+				  userLogado.setId(r.getLong("id"));
 				  userLogado.setCreated_at(r.getDate("created_at"));
 				  userLogado.setFirst_acess(r.getBoolean("first_acess"));
 				  userLogado.setLast_name(r.getString("last_name"));

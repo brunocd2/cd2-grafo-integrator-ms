@@ -78,7 +78,7 @@ public class UserAdapterInbound {
 							user);
 				} else {
 					domazzi = dao.findByUserAndPass(user.getEmail(), MD5.getMd5(user.getPassword()));
-					if (domazzi != null) {
+					if (!domazzi.getEmail().equalsIgnoreCase("") || domazzi.getEmail()!=null) {
 						java.util.Random r = new java.util.Random();
 						byte[] bytes = new byte[20];
 
