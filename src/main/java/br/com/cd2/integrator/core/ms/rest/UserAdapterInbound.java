@@ -22,6 +22,7 @@ import org.springframework.web.bind.annotation.RestController;
 import br.com.cd2.integrator.core.model.User;
 import br.com.cd2.integrator.core.ms.dao.IntegratorDAO;
 import br.com.cd2.integrator.core.ms.dto.LoginDTO;
+import br.com.cd2.integrator.core.ms.dto.MailDTO;
 import br.com.cd2.integrator.core.ms.dto.UserDTO;
 import br.com.cd2.integrator.core.ms.i18n.Messages;
 import br.com.cd2.integrator.core.ms.i18n.MessagesProperties;
@@ -140,7 +141,7 @@ public class UserAdapterInbound {
 
 
 	@RequestMapping(value = "/forgot", method = RequestMethod.POST)
-	public ResponseEntity<ApiResponse> forgot(@Validated @RequestBody User objDTO) throws ObjectNotFoundException {
+	public ResponseEntity<ApiResponse> forgot(@Validated @RequestBody MailDTO objDTO) throws ObjectNotFoundException {
 
 		service.sendNewPassword(objDTO.getEmail());
 		return ResponseEntityUtil.okResponseEntity(message.get(MessagesProperties.EMAIL_FOUND), objDTO);
