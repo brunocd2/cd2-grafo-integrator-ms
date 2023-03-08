@@ -19,22 +19,19 @@ public class IntegratorDAO {
 
 	@Autowired
 	UserRepository repository;
-	
 
-	public User findByUserAndPass(String user,String pass) {
-		
-		User userLogado =  new User();
-		//Fixo para domazzi, mudar depois
+	public User findByUserAndPass(String user, String pass) {
+
+		User userLogado = new User();
+		// Fixo para domazzi, mudar depois
 
 		try {
 
 			Class.forName("org.postgresql.Driver");
-			
 
 		} catch (ClassNotFoundException e) {
 
-			System.out.println("Where is your PostgreSQL JDBC Driver? "
-					+ "Include in your library path!");
+			System.out.println("Where is your PostgreSQL JDBC Driver? " + "Include in your library path!");
 			e.printStackTrace();
 			return null;
 
@@ -43,30 +40,27 @@ public class IntegratorDAO {
 
 		try {
 
-			connection = DriverManager.getConnection(
-					"jdbc:postgresql://179.188.16.145/domazzi", "domazzi",
+			connection = DriverManager.getConnection("jdbc:postgresql://179.188.16.145/domazzi", "domazzi",
 					"FcZv4P8#6,Ijz:");
-			String sql = "select * from users where EMAIL = ? AND PASS_MD5 =?";  
-			PreparedStatement preparedStatement = connection.prepareStatement(sql);  
+			String sql = "select * from users where EMAIL = ? AND PASS_MD5 =?";
+			PreparedStatement preparedStatement = connection.prepareStatement(sql);
 			preparedStatement.setString(1, user);
 			preparedStatement.setString(2, pass);
-			ResultSet r = preparedStatement.executeQuery();  
-			
-			
-			  while (r.next()){
-				  userLogado.setId(r.getLong("id"));
-				  userLogado.setCreated_at(r.getDate("created_at"));
-				  userLogado.setFirst_acess(r.getBoolean("first_acess"));
-				  userLogado.setLast_name(r.getString("last_name"));
-				  userLogado.setName(r.getString("name"));
-				  userLogado.setPassword(r.getString("password"));
-				  userLogado.setRemember_token(r.getString("remember_token"));
-				  userLogado.setEmail(r.getString("email"));
-					
-				}
-			                        connection.close();
-                        return userLogado;
+			ResultSet r = preparedStatement.executeQuery();
 
+			while (r.next()) {
+				userLogado.setId(r.getLong("id"));
+				userLogado.setCreated_at(r.getDate("created_at"));
+				userLogado.setFirst_acess(r.getBoolean("first_acess"));
+				userLogado.setLast_name(r.getString("last_name"));
+				userLogado.setName(r.getString("name"));
+				userLogado.setPassword(r.getString("password"));
+				userLogado.setRemember_token(r.getString("remember_token"));
+				userLogado.setEmail(r.getString("email"));
+
+			}
+			connection.close();
+			return userLogado;
 
 		} catch (SQLException e) {
 
@@ -75,32 +69,61 @@ public class IntegratorDAO {
 			return null;
 
 		}
-		/*try {
-			User userLoged = repository.findByUserAndPass(user,pass);
-		
-			return userLoged;
-		} catch (Exception e) {
-			e.printStackTrace();
-			return null;
-		}
-		*/
-		
+		/*
+		 * try { User userLoged = repository.findByUserAndPass(user,pass);
+		 * 
+		 * return userLoged; } catch (Exception e) { e.printStackTrace(); return null; }
+		 */
+
 	}
-	
-	public User findByEmail(String email
-) {
-		//Fixo para domazzi, mudar depois
+
+	public User findByEmail(String email) {
+		User userLogado = new User();
+		// Fixo para domazzi, mudar depois
+
 		try {
-			User userLoged = repository.findByEmail(email);
-		
-			return userLoged;
-		} catch (Exception e) {
+
+			Class.forName("org.postgresql.Driver");
+
+		} catch (ClassNotFoundException e) {
+
+			System.out.println("Where is your PostgreSQL JDBC Driver? " + "Include in your library path!");
 			e.printStackTrace();
 			return null;
+
 		}
-		
-		
+		Connection connection = null;
+
+		try {
+
+			connection = DriverManager.getConnection("jdbc:postgresql://179.188.16.145/domazzi", "domazzi",
+					"FcZv4P8#6,Ijz:");
+			String sql = "select * from users where EMAIL = ?";
+			PreparedStatement preparedStatement = connection.prepareStatement(sql);
+			preparedStatement.setString(1, email);
+			ResultSet r = preparedStatement.executeQuery();
+
+			while (r.next()) {
+				userLogado.setId(r.getLong("id"));
+				userLogado.setCreated_at(r.getDate("created_at"));
+				userLogado.setFirst_acess(r.getBoolean("first_acess"));
+				userLogado.setLast_name(r.getString("last_name"));
+				userLogado.setName(r.getString("name"));
+				userLogado.setPassword(r.getString("password"));
+				userLogado.setRemember_token(r.getString("remember_token"));
+				userLogado.setEmail(r.getString("email"));
+
+			}
+			connection.close();
+			return userLogado;
+
+		} catch (SQLException e) {
+
+			System.out.println("Connection Failed! Check output console");
+			e.printStackTrace();
+			return null;
+
+		}
 	}
-	
-	
+
 }
