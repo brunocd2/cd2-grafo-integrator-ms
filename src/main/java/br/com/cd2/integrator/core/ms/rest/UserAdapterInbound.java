@@ -112,6 +112,7 @@ public class UserAdapterInbound {
 	@Produces(MediaType.APPLICATION_JSON)
 	public ResponseEntity<ApiResponse> UpdateAcess(@RequestBody @Validated User user) {
 		System.out.println(user);
+		MD5 md5 =  new MD5();
 		try {
 
 			if (user == null) {
@@ -125,6 +126,8 @@ public class UserAdapterInbound {
 					if(user.getFirst_acess()==true) {
 						
 						user.setFirst_acess(false);
+						user.setPass_md5(MD5.getMd5(user.getPassword()));
+						
 						repository.save(user);
 					}
 					return ResponseEntityUtil.okResponseEntity(message.get(MessagesProperties.USU_SUCESS), user);
