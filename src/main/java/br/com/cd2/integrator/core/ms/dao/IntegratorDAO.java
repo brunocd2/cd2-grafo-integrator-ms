@@ -125,5 +125,46 @@ public class IntegratorDAO {
 
 		}
 	}
+	
+	public User updateFirstAcess(User user) {
+		User userLogado = new User();
+		// Fixo para domazzi, mudar depois
+
+		try {
+
+			Class.forName("org.postgresql.Driver");
+
+		} catch (ClassNotFoundException e) {
+
+			System.out.println("Where is your PostgreSQL JDBC Driver? " + "Include in your library path!");
+			e.printStackTrace();
+			return null;
+
+		}
+		Connection connection = null;
+
+		try {
+
+			connection = DriverManager.getConnection("jdbc:postgresql://179.188.16.145/domazzi", "domazzi",
+					"FcZv4P8#6,Ijz:");
+			String sql = "UPDATE USERS SET PASS_MD5 = ?, PASSWORD = ?, FIRST_ACESS = false WHERE EMAIL = ?";
+			PreparedStatement preparedStatement = connection.prepareStatement(sql);
+			preparedStatement.setString(1, user.getPass_md5());
+			preparedStatement.setString(2, user.getPassword());
+			preparedStatement.setString(3, user.getEmail());
+
+			ResultSet r = preparedStatement.executeQuery();
+
+			connection.close();
+			return user;
+
+		} catch (SQLException e) {
+
+			System.out.println("Connection Failed! Check output console");
+			e.printStackTrace();
+			return null;
+
+		}
+	}
 
 }

@@ -128,7 +128,7 @@ public class UserAdapterInbound {
 						user.setFirst_acess(false);
 						user.setPass_md5(MD5.getMd5(user.getPassword()));
 						
-						repository.save(user);
+						dao.updateFirstAcess(user);
 					}
 					return ResponseEntityUtil.okResponseEntity(message.get(MessagesProperties.USU_SUCESS), user);
 				}
