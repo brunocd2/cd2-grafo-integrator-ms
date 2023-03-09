@@ -207,10 +207,15 @@ public class IntegratorDAO {
 			preparedStatement.setString(2, user.getEmail());
 			preparedStatement.setBoolean(10, true);
 
-			ResultSet r = preparedStatement.executeQuery();
-
-			connection.close();
-			return user;
+			try {
+				preparedStatement.executeQuery();
+				connection.close();
+				return user;
+	
+			} catch (Exception e) {
+				connection.close();
+				return user;
+			}
 
 		} catch (SQLException e) {
 
