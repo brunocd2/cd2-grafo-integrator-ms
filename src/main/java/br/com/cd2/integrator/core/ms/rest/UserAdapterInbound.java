@@ -162,7 +162,7 @@ public class UserAdapterInbound {
 						objDTO);
 			} else {
 				
-				User user_email = repository.findByEmail(objDTO.getEmail());
+				User user_email = dao.findByEmail(objDTO.getEmail());
 				
 				
 				if(user_email!=null) {
