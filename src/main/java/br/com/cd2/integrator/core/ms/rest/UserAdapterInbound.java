@@ -169,7 +169,7 @@ public class UserAdapterInbound {
 				User user_email = dao.findByEmail(objDTO.getEmail());
 				
 				
-				if(user_email!=null) {
+				if(user_email.getEmail()!=null) {
 					
 					return ResponseEntityUtil.okResponseEntity(message.get(MessagesProperties.EMAIL_FOUND), objDTO.email);
 				}else {
