@@ -213,6 +213,8 @@ public class DomazziDAO {
 		
 	}
 	
+
+	
 	public List<DomazziDTO> findByCategoria(String categoria) {
 		List<DomazziDTO> novoProduto = new ArrayList<>();
 		List<Domazzi> domazzi = repository.findByCategoria(categoria);

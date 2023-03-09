@@ -1,6 +1,7 @@
 package br.com.cd2.integrator.core.ms.rest;
 
 import java.sql.Date;
+import java.util.List;
 import java.util.Random;
 import java.util.UUID;
 
@@ -12,10 +13,12 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -29,6 +32,7 @@ import br.com.cd2.integrator.core.ms.i18n.MessagesProperties;
 import br.com.cd2.integrator.core.ms.rest.services.UserService;
 import br.com.cd2.integrator.core.repository.UserRepository;
 import br.com.cd2.integrator.core.utils.MD5;
+import br.com.cd2.integrator.module.domazzi.ms.dto.DomazziDTO;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiResponses;
 import javassist.tools.rmi.ObjectNotFoundException;
@@ -197,4 +201,29 @@ public class UserAdapterInbound {
 
 	}
 
+	@GetMapping(value = "/find_all", produces = "application/json")
+	@ResponseBody
+	@CrossOrigin
+	@Produces(MediaType.APPLICATION_JSON)
+	public ResponseEntity<ApiResponse> findAll() {
+		List<User> listProducts = null;
+		try {
+			
+			listProducts = dao.findAll();
+				if(listProducts == null) {
+					return ResponseEntityUtil.notFoundResponseEntity
+							(message.get(MessagesProperties.USU_NOT_FOUND), listProducts);
+				}else {
+					
+						return ResponseEntityUtil.okResponseEntity(message.get
+							(MessagesProperties.USU_SUCESS),listProducts);		
+				}
+		
+		} catch (Exception e) {
+			return ResponseEntityUtil.unprocessableResponseEntity
+					(message.get(MessagesProperties.ENTITY_NOT_FOUND), listProducts);
+
+		}		
+		}
+	
 }

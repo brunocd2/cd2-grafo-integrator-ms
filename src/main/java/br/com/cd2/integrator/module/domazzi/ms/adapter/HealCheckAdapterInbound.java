@@ -31,7 +31,7 @@ import br.com.cd2.integrator.module.domazzi.ms.model.Sql;
 
 @RestController
 @CrossOrigin
-@RequestMapping("/notification")
+@RequestMapping("/notification_dash")
 public class HealCheckAdapterInbound {
 	
 	@Autowired
@@ -135,7 +135,31 @@ public class HealCheckAdapterInbound {
 		
 		}
 
-	
+
+	@GetMapping(value = "/find_products_by_partner_and_date", produces = "application/json")
+	@ResponseBody
+	@CrossOrigin
+	@Produces(MediaType.APPLICATION_JSON)
+	public ResponseEntity<ApiResponse> findByEanAndPartner(@RequestParam("partner") String partner, @RequestParam("ean") Long ean) {
+		List<DomazziDTO> listProducts = null;
+		try {
+			
+			listProducts = dao.findByEanAndPartner(ean,partner);
+				if(listProducts == null) {
+					return ResponseEntityUtil.notFoundResponseEntity
+							(message.get(MessagesProperties.CLI_NOT_FOUND), listProducts);
+				}else {
+					
+						return ResponseEntityUtil.okResponseEntity(message.get
+							(MessagesProperties.CLI_FINDED),listProducts);		
+				}
+		
+		} catch (Exception e) {
+			return ResponseEntityUtil.unprocessableResponseEntity
+					(message.get(MessagesProperties.ENTITY_NOT_FOUND), listProducts);
+
+		}		
+		}
 
 }
 
