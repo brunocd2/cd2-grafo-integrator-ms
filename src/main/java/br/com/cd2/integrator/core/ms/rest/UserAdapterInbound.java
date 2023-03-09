@@ -183,7 +183,7 @@ public class UserAdapterInbound {
 				user.setName(objDTO.getName());
 				user.setFirst_acess(true);
 				
-				user = service.insert(user);
+				user = dao.createUser(user);
 				if (user != null) {
 
 					return ResponseEntityUtil.okResponseEntity(message.get(MessagesProperties.CAD_USU_SUCESS), user);
