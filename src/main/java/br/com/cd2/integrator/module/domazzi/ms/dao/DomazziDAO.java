@@ -144,6 +144,8 @@ public class DomazziDAO {
 		DomazziDTO dto = new DomazziDTO();
 		try {
 		for (int i = 0; i < domazzi.size(); i++) {
+			 dto = new DomazziDTO();
+
 			dto.setCategoria(domazzi.get(i).getCategoria());
 			dto.setCodigo_acesso_principal(domazzi.get(i).getCodigo_acesso_principal());
 			dto.setCreated_at(domazzi.get(i).getCreated_at());
@@ -181,6 +183,8 @@ public class DomazziDAO {
 		DomazziDTO dto = new DomazziDTO();
 		try {
 		for (int i = 0; i < domazzi.size(); i++) {
+			 dto = new DomazziDTO();
+
 			dto.setCategoria(domazzi.get(i).getCategoria());
 			dto.setCodigo_acesso_principal(domazzi.get(i).getCodigo_acesso_principal());
 			dto.setCreated_at(domazzi.get(i).getCreated_at());
@@ -221,6 +225,8 @@ public class DomazziDAO {
 		DomazziDTO dto = new DomazziDTO();
 		try {
 		for (int i = 0; i < domazzi.size(); i++) {
+			 dto = new DomazziDTO();
+
 			dto.setCategoria(domazzi.get(i).getCategoria());
 			dto.setCodigo_acesso_principal(domazzi.get(i).getCodigo_acesso_principal());
 			dto.setCreated_at(domazzi.get(i).getCreated_at());
