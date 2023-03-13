@@ -91,6 +91,8 @@ public class DomazziDAO {
 			dto.setParceiro(domazzi.get(i).getParceiro());
 			dto.setPreco_vda_alvim(domazzi.get(i).getPreco_vda_alvim());
 			dto.setQtd_ult_saida(domazzi.get(i).getQtd_ult_saida());
+			dto.setQtd_ult_compra(domazzi.get(i).getQtd_ult_compra());
+
 			dto.setReferencia_domazzi(domazzi.get(i).getReferencia_domazzi());
 			dto.setUpdated_at(domazzi.get(i).getUpdated_at());
 			
@@ -129,6 +131,8 @@ public class DomazziDAO {
 			dto.setQtd_ult_saida(novoProduto.getQtd_ult_saida());
 			dto.setReferencia_domazzi(novoProduto.getReferencia_domazzi());
 			dto.setUpdated_at(novoProduto.getUpdated_at());
+			dto.setQtd_ult_compra(novoProduto.getQtd_ult_compra());
+
 			
 			return dto;
 		} catch (Exception e) {
@@ -165,6 +169,8 @@ public class DomazziDAO {
 			dto.setQtd_ult_saida(domazzi.get(i).getQtd_ult_saida());
 			dto.setReferencia_domazzi(domazzi.get(i).getReferencia_domazzi());
 			dto.setUpdated_at(domazzi.get(i).getUpdated_at());
+			dto.setQtd_ult_compra(domazzi.get(i).getQtd_ult_compra());
+
 			
 			novoProduto.add(dto);
 		}
@@ -204,6 +210,8 @@ public class DomazziDAO {
 			dto.setQtd_ult_saida(domazzi.get(i).getQtd_ult_saida());
 			dto.setReferencia_domazzi(domazzi.get(i).getReferencia_domazzi());
 			dto.setUpdated_at(domazzi.get(i).getUpdated_at());
+			dto.setQtd_ult_compra(domazzi.get(i).getQtd_ult_compra());
+
 			
 			novoProduto.add(dto);
 		}
@@ -246,6 +254,8 @@ public class DomazziDAO {
 			dto.setQtd_ult_saida(domazzi.get(i).getQtd_ult_saida());
 			dto.setReferencia_domazzi(domazzi.get(i).getReferencia_domazzi());
 			dto.setUpdated_at(domazzi.get(i).getUpdated_at());
+			dto.setQtd_ult_compra(domazzi.get(i).getQtd_ult_compra());
+
 			
 			novoProduto.add(dto);
 		}

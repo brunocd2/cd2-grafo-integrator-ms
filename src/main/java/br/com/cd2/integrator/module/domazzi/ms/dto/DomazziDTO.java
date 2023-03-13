@@ -30,11 +30,20 @@ public class DomazziDTO {
 	private Float custo_ult_compra_cd;
 	private Float preco_vda_alvim;
 	private String qtd_ult_saida;
+	private String qtd_ult_compra;
 	private String estoque_3meses;
 	private String estoque_12meses;
 	private Timestamp dta_ult_saida;
 	private Timestamp created_at;
 	private Timestamp updated_at;
+	
+	
+	public String getQtd_ult_compra() {
+		return qtd_ult_compra;
+	}
+	public void setQtd_ult_compra(String qtd_ult_compra) {
+		this.qtd_ult_compra = qtd_ult_compra;
+	}
 	public Long getId() {
 		return id;
 	}
